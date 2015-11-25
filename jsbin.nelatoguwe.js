@@ -6,6 +6,7 @@ ctx.lineCap = 'round';
 ctx.shadowBlur = 15;
 ctx.shadowColor = '28d1fa';
 
+
 function degToRad(degree){
   var factor = Math.PI/180;
   return factor*degree;
@@ -23,9 +24,13 @@ function renderTime(){
   var newSeconds = seconds + (milliseconds/1000);
   
   //Background 
-  ctx.fillStyle = '333333';
+  gradient = ctx.createRadialGradient(250,250,5,250,250,300);
+  gradient.addColorStop(0,'09303a');
+  gradient.addColorStop(1,'black');
+  ctx.fillStyle = gradient;
+  //ctx.fillStyle = '333333';
   ctx.fillRect(0,0,500,500);
-  
+
   
   //Hours 
   ctx.beginPath();
@@ -43,9 +48,13 @@ function renderTime(){
   ctx.stroke();
   
   //Date 
-
-  
+  ctx.font = "25px Arial bold";
+  ctx.fillStyle = '28d1fa';
+  ctx.fillText(today, 175, 250);
   
   //Time
+  ctx.font = "15px Arial";
+  ctx.fillStyle = '28d1fa';
+  ctx.fillText(time, 175, 280);
 }
 setInterval(renderTime,40);
